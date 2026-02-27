@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T.O.C - 전술 작전 통제소 요원 모집</title>
+    
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f1115',
+                        darkSurface: '#1a1d24',
+                        darkStroke: '#2d3139',
+                        tocGreenDark: '#34D399',
+                        tocGreenGlow: 'rgba(52, 211, 153, 0.2)'
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                        display: ['Rajdhani', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'blink': 'blink 1s step-end infinite',
+                    },
+                    keyframes: {
+                        blink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            background-color: #0f1115;
+            color: #F3F4F6;
+        }
+        
+        /* 택티컬 배경 (그리드 + 어두운 오버레이) */
+        .tactical-bg-layer {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(to bottom, rgba(15, 17, 21, 0.8), rgba(15, 17, 21, 1)),
+                url('https://images.unsplash.com/photo-1596515862211-137bfa3978bb?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* 레이더 망점 효과 */
+        .radar-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background-image: radial-gradient(#2d3139 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.6;
+        }
+
+        /* 폼 포커스 시 네온 효과 */
+        .input-glow:focus-within {
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.15);
+            border-color: #34D399;
+        }
+    </style>
+</head>
+<body class="font-sans min-h-screen flex flex-col relative selection:bg-tocGreenDark selection:text-darkBg">
+
+    <!-- 배경 레이어 -->
+    <div class="tactical-bg-layer"></div>
+    <div class="radar-grid"></div>
+
+    <!-- Header / Logo -->
+    <header class="w-full p-6 flex justify-between items-center z-10 max-w-5xl mx-auto">
+        <div class="text-2xl font-display font-bold tracking-widest text-white">
+            T.O.C<span class="text-tocGreenDark animate-blink">_</span>
+        </div>
+        <div class="flex items-center gap-2 text-tocGreenDark font-display text-sm font-bold tracking-widest border border-tocGreenDark/30 bg-tocGreenDark/10 px-3 py-1 rounded">
+            <span class="w-2 h-2 rounded-full bg-tocGreenDark animate-pulse"></span>
+            SYSTEM OFFLINE
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col justify-center items-center px-5 z-10 w-full max-w-3xl mx-auto text-center py-10">
+        
+        <!-- Badge -->
+        <div class="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-darkSurface border border-darkStroke text-gray-400 text-xs font-bold tracking-widest uppercase">
+            <i data-lucide="lock" class="w-3 h-3"></i>
+            Classified Operation
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight">
+            전국 공인 작전지 통제망<br>
+            <span class="text-tocGreenDark">접속 대기 중.</span>
+        </h1>
+
+        <!-- Sub Copy -->
+        <p class="text-gray-400 text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+            더 이상 비공식 통신망에서 작전을 모의하지 마십시오.<br>
+            완벽하게 통제된 전장과 요원 스탯 관리 시스템이 곧 가동됩니다.
+        </p>
+
+        <!-- Features (Grid) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mb-12 text-left">
+            <div class="bg-darkSurface/80 backdrop-blur border border-darkStroke p-5 rounded-xl">
+                <i data-lucide="map" class="w-6 h-6 text-tocGreenDark mb-3"></i>
+                <h3 class="font-bold text-white mb-1">작전지(AO) 통제</h3>
+                <p class="text-sm text-gray-500">전국 프리미엄 에어소프트 필드 큐레이션 및 투입 예약</p>
+            </div>
+            <div class="bg-darkSurface/80 backdrop-blur border border-darkStroke p-5 rounded-xl">
+                <i data-lucide="users" class="w-6 h-6 text-tocGreenDark mb-3"></i>
+                <h3 class="font-bold text-white mb-1">분대(Squad) 구축</h3>
+                <p class="text-sm text-gray-500">신뢰할 수 있는 요원들과의 팀 매칭 및 합동 작전</p>
+            </div>
+            <div class="bg-darkSurface/80 backdrop-blur border border-darkStroke p-5 rounded-xl">
+                <i data-lucide="activity" class="w-6 h-6 text-tocGreenDark mb-3"></i>
+                <h3 class="font-bold text-white mb-1">스탯(Stats) 기록</h3>
+                <p class="text-sm text-gray-500">전투력, 생존율 등 요원의 개인 전술 데이터 누적 관리</p>
+            </div>
+        </div>
+
+        <!-- CTA Form (사전 예약 폼) -->
+        <div class="w-full max-w-md bg-darkSurface/90 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-darkStroke shadow-2xl">
+            <h2 class="text-xl font-bold mb-2 text-white text-left">통신망 접근 권한 요청</h2>
+            <p class="text-sm text-gray-400 mb-6 text-left">작전 통제소 오픈 시 가장 먼저 호출해 드립니다.</p>
+            
+            <form id="preLaunchForm" class="space-y-4">
+                <div class="relative input-glow transition-all duration-300 rounded-xl border border-darkStroke bg-[#0f1115] overflow-hidden flex">
+                    <div class="pl-4 pr-2 py-3.5 flex items-center justify-center text-gray-500">
+                        <i data-lucide="radio-receiver" class="w-5 h-5"></i>
+                    </div>
+                    <input 
+                        type="text" 
+                        id="contactInfo"
+                        name="contactInfo"
+                        placeholder="이메일 또는 휴대전화 번호 입력" 
+                        class="w-full bg-transparent text-white placeholder-gray-600 px-2 py-3.5 focus:outline-none text-sm md:text-base"
+                        required
+                    >
+                </div>
+                
+                <button 
+                    type="submit" 
+                    id="submitBtn"
+                    class="w-full bg-tocGreenDark hover:bg-emerald-400 text-[#0f1115] font-bold py-4 rounded-xl transition-all duration-300 flex justify-center items-center gap-2 shadow-[0_0_15px_rgba(52,211,153,0.3)] hover:shadow-[0_0_25px_rgba(52,211,153,0.5)] disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    <i data-lucide="send" class="w-5 h-5" id="btnIcon"></i>
+                    <span id="btnText">작전 개시 알림 수신</span>
+                </button>
+            </form>
+            <p class="text-[11px] text-gray-600 mt-4 text-center">
+                * 수집된 연락처는 서비스 오픈 알림 목적 외에는 절대 사용되지 않습니다.
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full p-6 text-center z-10 text-gray-600 text-xs font-display tracking-widest">
+        &copy; 2026 T.O.C. ALL RIGHTS RESERVED.
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // ★ 여기에 구글 앱스 스크립트 배포 URL을 붙여넣으세요!
+        const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+        
+        const form = document.getElementById('preLaunchForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnIcon = document.getElementById('btnIcon');
+
+        // 폼 제출 이벤트 처리
+        form.addEventListener('submit', e => {
+            e.preventDefault(); // 페이지 새로고침 방지
+            
+            // 1. 버튼 상태를 로딩 중으로 변경
+            submitBtn.disabled = true;
+            btnText.innerText = '통신망 연결 중...';
+            btnIcon.setAttribute('data-lucide', 'loader-2');
+            btnIcon.classList.add('animate-spin');
+            lucide.createIcons(); // 아이콘 새로고침
+            
+            // 2. 폼 데이터 가져오기
+            const formData = new FormData(form);
+
+            // 3. 구글 시트로 데이터 전송 (POST)
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    alert(`[T.O.C 통신망 접속 대기]\n\n입력하신 정보가 통신망에 등록되었습니다.\n작전이 개시되면 즉시 하달하겠습니다, 요원님.`);
+                    form.reset(); // 입력창 초기화
+                })
+                .catch(error => {
+                    alert('[통신 오류] 본부와 연결할 수 없습니다. 잠시 후 다시 시도해 주십시오.');
+                    console.error('Error!', error.message);
+                })
+                .finally(() => {
+                    // 4. 전송 완료 후 버튼 상태 복구
+                    submitBtn.disabled = false;
+                    btnText.innerText = '작전 개시 알림 수신';
+                    btnIcon.setAttribute('data-lucide', 'send');
+                    btnIcon.classList.remove('animate-spin');
+                    lucide.createIcons();
+                });
+        });
+    </script>
+</body>
+</html>
